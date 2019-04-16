@@ -33,9 +33,18 @@ set_dir <- function(dir) {
   op <- options()
   op.esriOpenData <- list(
     esriOpenData.api_base = "https://hub.arcgis.com/api/v2",
+    esriOpenData.api_dataset_endpoint = "/datasets",
     esriOpenData.out_dir_set = FALSE,
     esriOpenData.out_dir = FALSE,
-    esriOpenData.verbose = FALSE
+    esriOpenData.verbose = FALSE,
+    esriOpenData.data_categories = c(
+      "Safe", "Crime", "Disaster", "Emergency",
+      "Sustainable", "Climate", "Energy", "Infrastructure",
+      "Liveable", "Culture", "Housing", "Transportation",
+      "Prosperous", "Demographics", "Economy", "Education",
+      "Healthy", "Disease", "Agriculture", "Health-Care",
+      "Well-Run", "Boundaries", "Financial", "Planning & Landuse"
+    )
   )
   to_set <- !names(op.esriOpenData) %in% names(op)
   if(any(to_set)) options(op.esriOpenData[to_set])
