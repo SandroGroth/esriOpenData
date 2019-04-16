@@ -24,3 +24,19 @@ set_dir <- function(dir) {
   options(esriOpenData.out_dir_set = TRUE)
 
 }
+
+#' On package startup
+#'
+#' @keywords settings
+#' @noRd
+.onLoad <- function(libname, pkgname) {
+  op <- options()
+  op.esriOpenData <- list(
+    esriOpenData.api_base = "https://hub.arcgis.com/api/v2",
+    esriOpenData.out_dir_set = FALSE,
+    esriOpenData.out_dir = FALSE,
+    esriOpenData.verbose = FALSE
+  )
+  to_set <- !names(op.esriOpenData) %in% names(op)
+  if(any(to_set)) options(op.esriOpenData[to_set])
+}
