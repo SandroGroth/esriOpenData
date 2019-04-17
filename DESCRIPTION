@@ -11,5 +11,6 @@ Imports:
   httr,
   rlist,
   jsonlite,
-  tidyverse
+  tidyverse,
+  urltools
 RoxygenNote: 6.1.1

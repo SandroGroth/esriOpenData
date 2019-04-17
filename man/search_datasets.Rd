@@ -4,8 +4,8 @@
 \alias{search_datasets}
 \title{Search datasets}
 \usage{
-search_datasets(category = c(), name = "", source = "",
-  sector = "", region = "", aoi = FALSE)
+search_datasets(category = "", name = "", source = "", sector = "",
+  region = "", aoi = FALSE)
 }
 \description{
 Search datasets
