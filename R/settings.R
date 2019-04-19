@@ -25,6 +25,43 @@ set_dir <- function(dir) {
 
 }
 
+#' Sets an aoi for the current session.
+#'
+#' @param sp_obj
+#'
+#' @keywords settings
+#' @export
+
+set_aoi <- function(sp_obj=FALSE) {
+  if(!isFALSE(sp_obj)) {
+    if(!class(sp_obj) %in% getOption("esriOpenData.sp_obj_classes")) {msg("sp_obj is not a spatial object.", "ERROR")}
+    options(esriOpenData.aoi = sp_obj)
+    options(esriOpenData.aoi_set = TRUE)
+  } else {
+    #TODO; DRAW
+    msg("TODO: Implement drawing a polygon.")
+  }
+}
+
+#' Checks if an AOI is set for this session.
+#'
+#' @return TRUE if Aoi is set, FALSE if not.
+#'
+#' @keywords settings
+#' @noRd
+
+.is_aoi_set <- function() {
+  if(isTRUE(getOption("esriOpenData.aoi_set"))) {
+    if(!isFALSE(getOption("esriOpenData.aoi"))) {
+      return(TRUE)
+    } else {
+      msg("Aoi setting indicated TRUE, but no AOI was found.", "ERROR")
+    }
+  } else {
+    return(FALSE)
+  }
+}
+
 #' On package startup
 #'
 #' @keywords settings
@@ -36,6 +73,8 @@ set_dir <- function(dir) {
     esriOpenData.api_dataset_endpoint = "/datasets",
     esriOpenData.out_dir_set = FALSE,
     esriOpenData.out_dir = FALSE,
+    esriOpenData.aoi_set = FALSE,
+    esriOpenData.aoi = FALSE,
     esriOpenData.verbose = FALSE,
     esriOpenData.data_categories = c(
       "Safe", "Crime", "Disaster", "Emergency",
@@ -44,6 +83,13 @@ set_dir <- function(dir) {
       "Prosperous", "Demographics", "Economy", "Education",
       "Healthy", "Disease", "Agriculture", "Health-Care",
       "Well-Run", "Boundaries", "Financial", "Planning & Landuse"
+    ),
+    esriOpenData.sp_obj_classes = c(
+      "Spatial", "SpatialGrid", "SpatialGridDataFrame",
+      "SpatialLines", "SpatialLinesDataFrame", "SpatialMulitPoints",
+      "SpatialMultiPointsDataFrame", "SpatialPixels", "SpatialPixelsDataFrame",
+      "SpatialPoints", "SpatialPointsDataFrame", "SpatialPolygons",
+      "SpatialPolygonsDataFrame"
     )
   )
   to_set <- !names(op.esriOpenData) %in% names(op)
