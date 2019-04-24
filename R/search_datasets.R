@@ -1,5 +1,13 @@
 #' Search datasets
+#' @importFrom magrittr "%>%"
 #'
+#' @param query
+#' @param source
+#' @param sector
+#' @param region
+#' @param aoi
+#'
+#' @keywords search_datasets
 #' @export
 
 search_datasets <- function(query="", source="", sector="", region="", aoi=FALSE) {
@@ -22,9 +30,9 @@ search_datasets <- function(query="", source="", sector="", region="", aoi=FALSE
   }
 
   url <- urltools::param_set(url, "page[size]", 1000)
-  msg(paste0("Requesting URL: ", url, "INFO"))
 
+  msg(paste0("Requesting URL: ", url, "INFO"))
   response <- .call_get(url)
-  response_json <- jsonlite::fromJSON(response)
-  return(response_json)
+  response_df <- jsonlite::fromJSON(response)
+  return(response_df$data$attributes)
 }

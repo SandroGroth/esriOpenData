@@ -12,5 +12,8 @@ Imports:
   rlist,
   jsonlite,
   tidyverse,
-  urltools
+  urltools,
+  mapedit,
+  leaflet,
+  dplyr
 RoxygenNote: 6.1.1

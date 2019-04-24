@@ -38,8 +38,10 @@ set_aoi <- function(sp_obj=FALSE) {
     options(esriOpenData.aoi = sp_obj)
     options(esriOpenData.aoi_set = TRUE)
   } else {
-    #TODO; DRAW
-    msg("TODO: Implement drawing a polygon.")
+    msg("No spatial object specified. Drawing enabled.")
+    drawn <- mapedit::editMap(leaflet::leaflet() %>% leaflet::addTiles(), sf = FALSE)
+    # TODO: Allow only rectangles
+    # TODO: Implement Conversion from drawn to bbox
   }
 }
 

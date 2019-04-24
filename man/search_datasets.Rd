@@ -7,6 +7,10 @@
 search_datasets(query = "", source = "", sector = "", region = "",
   aoi = FALSE)
 }
+\arguments{
+\item{aoi}{}
+}
 \description{
 Search datasets
 }
+\keyword{search_datasets}
