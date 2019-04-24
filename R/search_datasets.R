@@ -37,8 +37,8 @@ search_datasets <- function(query="", source="", sector="", region="", aoi=FALSE
 
   data <- response_df$data
   attributes <- data$attributes
-  ids <- data[ ,c("id")]
-  response_df <- cbind(ids, attributes)
+  id <- data[ ,c("id")]
+  response_df <- cbind(id, attributes)
 
   return(response_df)
 }
