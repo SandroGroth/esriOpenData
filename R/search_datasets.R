@@ -34,5 +34,11 @@ search_datasets <- function(query="", source="", sector="", region="", aoi=FALSE
   msg(paste0("Requesting URL: ", url, "INFO"))
   response <- .call_get(url)
   response_df <- jsonlite::fromJSON(response)
-  return(response_df$data$attributes)
+
+  data <- response_df$data
+  attributes <- data$attributes
+  ids <- data[ ,c("id")]
+  response_df <- cbind(ids, attributes)
+
+  return(response_df)
 }
