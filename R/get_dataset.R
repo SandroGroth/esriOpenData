@@ -53,7 +53,9 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
   response <- .call_get(rest_url)
   # TODO: check if reponse conains error
 
-  response_spdf <- rgdal::readOGR(response) # TODO: Error handling
+  tryCatch({response_spdf <- rgdal::readOGR(response)},
+           warning = function(w) {msg(w, "WARNING")},
+           error = function(e) {msg(e, "ERROR")})
 
   if(isTRUE(export)) {
     if(isFALSE(getOption("esriOpendata.out_dir_set"))) {
