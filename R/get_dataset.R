@@ -43,34 +43,38 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
   }
 
   where_clause <- "1%3D1"
-  rest_url <- paste0(rest_url, "/query")
-  rest_url <- urltools::param_set(rest_url, "outFields", query_fields)
-  rest_url <- urltools::param_set(rest_url, "where", where_clause)
+  rest_url <- paste0(URLencode(rest_url), "/query")
+  rest_url <- urltools::param_set(rest_url, "outFields", URLencode(query_fields))
+  rest_url <- urltools::param_set(rest_url, "where", URLencode(where_clause))
   rest_url <- urltools::param_set(rest_url, "outSR", sp_ref)
   rest_url <- urltools::param_set(rest_url, "f", "json")
 
   msg(paste0("Requesting URL: ", rest_url))
+
   response <- .call_get(rest_url)
   # TODO: check if reponse conains error
 
-  tryCatch({response_spdf <- rgdal::readOGR(response)},
-           warning = function(w) {msg(w, "WARNING")},
-           error = function(e) {msg(e, "ERROR")})
+  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = TRUE, layer = "ESRIJSON")},
+            warning = function(w) {msg(w, "WARNING")},
+            error = function(e) {msg(e, "ERROR")})
 
   if(isTRUE(export)) {
+    out_dir <- ""
     if(isFALSE(getOption("esriOpendata.out_dir_set"))) {
       msg("No output directory set. Working directory will be selected.")
       out_dir <- getwd()
     } else {
       out_dir <- getOption("esriOpenData.out_dir")
     }
-    dsn <- gsub(":", "", slug)
+    dsn <- gsub(":", "", splotlug)
     dsn <- gsub("-", "_", dsn)
     if(format == "shp") {
       rgdal::writeOGR(response_spdf, paste0(out_dir, "/", dsn, ".shp"), 1, driver = "ESRI Shapefile")   # TODO: Handle stupid windows backslashes
     }
-    # TODO: handle csv and kml output formats
+    if(format == "csv") {
+      write.csv(response_spdf, paste0(out_dir, "/", dsn, ".csv"))
+    }
   }
 
-  return(response)
+  return(response_spdf)
 }
