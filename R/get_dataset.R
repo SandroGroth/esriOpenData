@@ -55,7 +55,7 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
   response <- .call_get(rest_url)
   # TODO: check if reponse conains error
 
-  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = TRUE, layer = "ESRIJSON")},
+  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = FALSE, layer = "ESRIJSON")},
             warning = function(w) {msg(w, "WARNING")},
             error = function(e) {msg(e, "ERROR")})
 
@@ -67,7 +67,7 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
     } else {
       out_dir <- getOption("esriOpenData.out_dir")
     }
-    dsn <- gsub(":", "", splotlug)
+    dsn <- gsub(":", "", slug)
     dsn <- gsub("-", "_", dsn)
     if(format == "shp") {
       rgdal::writeOGR(response_spdf, paste0(out_dir, "/", dsn, ".shp"), 1, driver = "ESRI Shapefile")   # TODO: Handle stupid windows backslashes
