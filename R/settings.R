@@ -71,6 +71,7 @@ set_aoi <- function(sp_obj=FALSE) {
   op <- options()
   op.esriOpenData <- list(
     esriOpenData.api_base = "https://hub.arcgis.com/api/v2",
+    esriOpenData.hub_base = "https://hub.arcgis.com",
     esriOpenData.api_dataset_endpoint = "/datasets",
     esriOpenData.out_dir_set = FALSE,
     esriOpenData.out_dir = FALSE,
