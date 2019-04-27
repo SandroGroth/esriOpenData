@@ -10,6 +10,7 @@ fields <- function(sel_dataset){
   if(!"id" %in% colnames(sel_dataset)) {msg("sel_dataset has no column 'id'.", "ERROR")}
   if(!"url" %in% colnames(sel_dataset)) {msg("sel_dataset has no column 'url'.", "ERROR")}
   if(!"fields" %in% colnames(sel_dataset)) {msg("sel_dataset has no column 'fields'.", "ERROR")}
+  if(!sel_dataset$dataType == "Layer") {msg(paste0("selected datatype has no fields: ", sel_dataset$dataType))}
 
   ds_fields <- sel_dataset$fields[[1]]$name
 

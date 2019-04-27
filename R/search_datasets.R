@@ -40,5 +40,8 @@ search_datasets <- function(query="", source="", sector="", region="", aoi=FALSE
   id <- data[ ,c("id")]
   response_df <- cbind(id, attributes)
 
+  # exclude datasets that are not of type Layer
+  response_df <- response_df[response_df$dataType == "Layer", ]
+
   return(response_df)
 }

@@ -23,6 +23,7 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
   if(!"url" %in% colnames(sel_dataset)) {msg("sel_dataset has no column 'url'.", "ERROR")}
   if(!"fields" %in% colnames(sel_dataset)) {msg("sel_dataset has no column 'fields'.", "ERROR")}
   if(!format %in% c("shp", "csv", "kml")) {msg("Supported formats are only: shp, csv, kml", "ERROR")}
+  if(!sel_dataset$dataType == "Layer") {msg(paste0("selected datatype is currently not supported: ", sel_dataset$dataType), "ERROR")}
 
   rest_url <- sel_dataset$url
   id <- sel_dataset$id
