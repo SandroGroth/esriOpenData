@@ -29,9 +29,9 @@ download_full_dataset <- function(sel_dataset, format="shp") {
   }
 
   tryCatch({
-    if(format == "shp") {downloader::download(url, destfile = paste0(out_dir, slug, ".zip"))}
-    if(format == "kml") {downloader::download(url, destfile = paste0(out_dir, slug, ".kml"))}
-    if(format == "csv") {downloader::download(url, destfile = paste0(out_dir, slug, ".csv"))}},
+    if(format == "shp") {downloader::download(url, destfile = paste0(out_dir, "/", slug, ".zip"))}
+    if(format == "kml") {downloader::download(url, destfile = paste0(out_dir, "/", slug, ".kml"))}
+    if(format == "csv") {downloader::download(url, destfile = paste0(out_dir, "/", slug, ".csv"))}},
     warning = function(w) {msg(w, "WARNING")},
     error = function(e) {msg(e, "ERROR")})
 
