@@ -1,6 +1,15 @@
-#' settings
+#' Output directory Setting
 #'
-#' @param dir
+#' \code{set_dir} sets a project and session wide output directory. If the directory does not exist yet, a
+#' new one will be created.
+#'
+#' @param dir Character. The path, where downloaded datasets should be stored.
+#'
+#' @author Sandro Groth
+#'
+#' @examples
+#' library(esriOpenData)
+#' set_dir(/home/user/Documents/esriOpenData_Download)
 #'
 #' @export
 
@@ -24,9 +33,25 @@ set_dir <- function(dir) {
 
 }
 
-#' Sets an aoi for the current session.
+#' AOI Setting
 #'
-#' @param sp_obj
+#' \code{set_aoi} sets an aoi for the current session by passing a spatial Object.
+#' Spatial objects are all Subclasses of Spatial. Warning: drawing own aois is currently
+#' not supported.
+#'
+#' @param sp_obj A spatial object of class Spatial or Subclasses.
+#'
+#' @author Sandro Groth
+#'
+#' @examples
+#' library(esriOpenData)
+#' library(rgdal)
+#'
+#' ## Load a shapefile using rgdal
+#' aoi_shp <- readOGR("path/to/shapefile.shp")
+#'
+#' ## set session wide aoi
+#' set_aoi(shp)
 #'
 #' @keywords settings
 #' @export
@@ -38,7 +63,7 @@ set_aoi <- function(sp_obj=FALSE) {
     options(esriOpenData.aoi_set = TRUE)
   } else {
     msg("No spatial object specified. Drawing enabled.")
-    drawn <- mapedit::editMap(leaflet::leaflet() %>% leaflet::addTiles(), sf = FALSE)
+    #drawn <- mapedit::editMap(leaflet::leaflet() %>% leaflet::addTiles(), sf = FALSE)
     # TODO: Allow only rectangles
     # TODO: Implement Conversion from drawn to bbox
   }

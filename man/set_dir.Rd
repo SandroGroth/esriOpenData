@@ -2,13 +2,22 @@
 % Please edit documentation in R/settings.R
 \name{set_dir}
 \alias{set_dir}
-\title{settings}
+\title{Output directory Setting}
 \usage{
 set_dir(dir)
 }
 \arguments{
-\item{dir}{}
+\item{dir}{Character. The path, where downloaded datasets should be stored.}
 }
 \description{
-settings
+\code{set_dir} sets a project and session wide output directory. If the directory does not exist yet, a
+new one will be created.
+}
+\examples{
+library(esriOpenData)
+set_dir(/home/user/Documents/esriOpenData_Download)
+
+}
+\author{
+Sandro Groth
 }

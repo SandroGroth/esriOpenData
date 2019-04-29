@@ -2,17 +2,40 @@
 % Please edit documentation in R/get_dataset.R
 \name{get_dataset}
 \alias{get_dataset}
-\title{Retrieves the actual data from a selected dataset.
-TODO: Where clauses.}
+\title{Load data into R Environment}
 \usage{
 get_dataset(sel_dataset, fields = FALSE, sp_ref = 4326,
   export = FALSE, format = "shp")
 }
 \arguments{
-\item{format}{}
+\item{sel_dataset}{Dataframe, containing the information of a selected dataset.}
+
+\item{fields}{Vector of characters, containing field names that should be included in the imported subset.}
+
+\item{sp_ref}{Numeric. An EPSG code of a desired Spatial reference. Default is 4326.}
+
+\item{export}{Logical, wheter the imported subset should be exported to the output directory or not.}
+
+\item{format}{Character. If export is TRUE, which export format should be used. Options are "shp", "kml", "csv".}
+}
+\value{
+Spatial Object. Ready to use spatial object of the selected dataset with all filters applied.
 }
 \description{
-Retrieves the actual data from a selected dataset.
-TODO: Where clauses.
+\code{get_dataset} retrieves the actual data of a selected dataset from the histing server.
+The data can be subsetted by providing a vector containing only the needed field names. To
+store the subsetted dataset persistently in the specified output directory, the export option
+should be set to TRUE.
+}
+\examples{
+datasets <- search_datasets("Zensus 2011", aoi = TRUE)
+sel_dataset <- select_dataset(datasets, 1)
+## checkout available fields
+fields(sel_dataset)
+age1829 <- get_dataset(sel_dataset, c("OBJECTID", "NAME", "ALTER_1"), export = T, format = "csv")
+
+}
+\author{
+Sandro Groth
 }
 \keyword{get_dataset}

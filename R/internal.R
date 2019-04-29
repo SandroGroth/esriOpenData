@@ -1,9 +1,13 @@
-#' Call the JSONAPI using a GET request
+#' Calls the JSONAPI using a GET request
 #'
-#' @param url
-#' @param parameters
+#' @param url character. URL to call
 #'
-#' @return dataframe
+#' @return dataframe Dataframe, containing the parsed JSON server response.
+#'
+#' @author Sandro Groth
+#'
+#' @importFrom httr GET
+#' @importFrom httr content
 #'
 #' @keywords internal
 #' @noRd
@@ -23,15 +27,18 @@
 
 #' Calculates a bouding box on a given spatial object.
 #'
-#'@param sp_obj
-#'@param feature
+#' @param sp_obj A spatial object of class Spatial or subclasses.
 #'
-#'@return bbox matrix
+#' @return bbox matrix
 #'
-#'@keywords internal
-#'@noRd
+#' @author Sandro Groth
+#'
+#' @importFrom sp bbox
+#'
+#' @keywords internal
+#' @noRd
 
-.bbox <- function(sp_obj, feature=FALSE) {
+.bbox <- function(sp_obj) {
   # TODO: CHeck if sp_obj is a spatial object
   if(!class(sp_obj) %in% getOption("esriOpenData.sp_obj_classes")) {msg("sp_obj not recognized as a spatial object.", "ERROR")}
 
@@ -42,9 +49,13 @@
 
 #' Converts a bbox matrix to an ESRI bbox URL parameter.
 #'
-#' @param box
+#' @param box output of .bbox function
 #'
 #' @return bbox url parameter string.
+#'
+#' @author Sandro Groth
+#'
+#' @keywords internal
 #' @noRd
 .bbox2str <- function(box) {
   if(!is.matrix(box)) {msg("box has to be of type matrix.")}

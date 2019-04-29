@@ -1,11 +1,26 @@
 #' Search datasets
-#' @importFrom magrittr "%>%"
 #'
-#' @param query
-#' @param source
-#' @param sector
-#' @param region
-#' @param aoi
+#' \code{seearch_datasets} searches Esri's Open Data Hub using its REST API by applying
+#' the specified filters. If an aoi is set by exacuting set_aoi(), results can be also
+#' limited to a certain bounding box area.
+#'
+#' @param query Character, specifying the search query.
+#' @param source Character, specifying the name of data sources.
+#' @param sector Character, specifying the sector in which the search will be aplied.
+#' @param region Character, region code, e.g. 'US'.
+#' @param aoi Logical, wheter the search should be limited to the specified aoi or not.
+#'
+#' @return Dataframe, containing information about all matching datasets.
+#'
+#' @examples
+#' library(esriOpenData)
+#' datasets <- search_datasets("Census 2011", "statista", "Demography", "GER", aoi = T)
+#'
+#' @author Sandro Groth
+#'
+#' @importFrom urltools param_set
+#' @importFrom jsonlite fromJSON
+#' @importFrom magrittr "%>%"
 #'
 #' @keywords search_datasets
 #' @export

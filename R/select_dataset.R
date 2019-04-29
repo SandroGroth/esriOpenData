@@ -1,7 +1,18 @@
-#' Selects a dataset from a search_dataset response.
+#' Select a dataset
 #'
-#' @param dataset_df
-#' @param id
+#' \code{select_dataset} selects one specific dataset from the search result retrieved by
+#' search_datasets().
+#'
+#' @param dataset_df Dataframe, output of search_datasets().
+#' @param id row id of desired dataset, e.g. 1 represent first dataset of search results.
+#'
+#' @return Dataframe, containing only the selected dataset information.
+#'
+#' @examples
+#' datasets <- search_datasets("Climate", aoi = T)
+#' selected <- select_dataset(datasets, 12)
+#'
+#' @author Sandro Groth
 #'
 #' @keywords select_dataset
 #' @export

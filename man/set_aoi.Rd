@@ -2,14 +2,30 @@
 % Please edit documentation in R/settings.R
 \name{set_aoi}
 \alias{set_aoi}
-\title{Sets an aoi for the current session.}
+\title{AOI Setting}
 \usage{
 set_aoi(sp_obj = FALSE)
 }
 \arguments{
-\item{sp_obj}{}
+\item{sp_obj}{A spatial object of class Spatial or Subclasses.}
 }
 \description{
-Sets an aoi for the current session.
+\code{set_aoi} sets an aoi for the current session by passing a spatial Object.
+Spatial objects are all Subclasses of Spatial. Warning: drawing own aois is currently
+not supported.
+}
+\examples{
+library(esriOpenData)
+library(rgdal)
+
+## Load a shapefile using rgdal
+aoi_shp <- readOGR("path/to/shapefile.shp")
+
+## set session wide aoi
+set_aoi(shp)
+
+}
+\author{
+Sandro Groth
 }
 \keyword{settings}

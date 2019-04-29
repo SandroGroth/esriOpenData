@@ -1,15 +1,30 @@
-#' Retrieves the actual data from a selected dataset.
-#' TODO: Where clauses.
+#' Load data into R Environment
+#'
+#' \code{get_dataset} retrieves the actual data of a selected dataset from the histing server.
+#' The data can be subsetted by providing a vector containing only the needed field names. To
+#' store the subsetted dataset persistently in the specified output directory, the export option
+#' should be set to TRUE.
+#'
+#' @param sel_dataset Dataframe, containing the information of a selected dataset.
+#' @param fields Vector of characters, containing field names that should be included in the imported subset.
+#' @param sp_ref Numeric. An EPSG code of a desired Spatial reference. Default is 4326.
+#' @param export Logical, wheter the imported subset should be exported to the output directory or not.
+#' @param format Character. If export is TRUE, which export format should be used. Options are "shp", "kml", "csv".
+#'
+#' @return Spatial Object. Ready to use spatial object of the selected dataset with all filters applied.
+#'
+#' @examples
+#' datasets <- search_datasets("Zensus 2011", aoi = TRUE)
+#' sel_dataset <- select_dataset(datasets, 1)
+#' ## checkout available fields
+#' fields(sel_dataset)
+#' age1829 <- get_dataset(sel_dataset, c("OBJECTID", "NAME", "ALTER_1"), export = T, format = "csv")
+#'
+#' @author Sandro Groth
 #'
 #' @importFrom urltools param_set
 #' @importFrom rgdal readOGR
 #' @importFrom rgdal writeOGR
-#'
-#' @param sel_dataset
-#' @param fields
-#' @param sp_ref
-#' @param export
-#' @param format
 #'
 #' @keywords get_dataset
 #' @export

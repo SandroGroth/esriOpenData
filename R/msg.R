@@ -1,8 +1,10 @@
-#' logging
+#' Logging
 #'
-#' @param message
-#' @param level
-#' @param tag
+#' @param message Character, containing log message
+#' @param level Character, indication log level. Options are "ERROR", "WARNING", "INFO".
+#' @param tag Character. A log tag.
+#'
+#' @author Sandro Groth
 #'
 #' @keywords logging
 #' @noRd

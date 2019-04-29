@@ -2,10 +2,29 @@
 % Please edit documentation in R/download_full_dataset.R
 \name{download_full_dataset}
 \alias{download_full_dataset}
-\title{importFrom downloader dwonload}
+\title{Download full dataset}
 \usage{
 download_full_dataset(sel_dataset, format = "shp")
 }
-\description{
-importFrom downloader dwonload
+\arguments{
+\item{sel_dataset}{Dataframe containing the information about a selected dataset.}
+
+\item{format}{Character. Specifies the output format. Default is "shp".}
 }
+\value{
+Logical, indicating success of the download operation.
+}
+\description{
+\code{download_full_dataset} downloads a selected dataset from the server and saves it in the specified
+output directory. Supported formats are: .shp, .kml and .csv
+}
+\examples{
+datasets <- search_datasets("Climate", aoi = T)
+selected <- select_dataset(datasets, 12)
+download_full_dataset(selected, format = "csv")
+
+}
+\author{
+Sandro Groth
+}
+\keyword{download}

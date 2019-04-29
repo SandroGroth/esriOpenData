@@ -2,14 +2,28 @@
 % Please edit documentation in R/select_dataset.R
 \name{select_dataset}
 \alias{select_dataset}
-\title{Selects a dataset from a search_dataset response.}
+\title{Select a dataset}
 \usage{
 select_dataset(dataset_df, id)
 }
 \arguments{
-\item{id}{}
+\item{dataset_df}{Dataframe, output of search_datasets().}
+
+\item{id}{row id of desired dataset, e.g. 1 represent first dataset of search results.}
+}
+\value{
+Dataframe, containing only the selected dataset information.
 }
 \description{
-Selects a dataset from a search_dataset response.
+\code{select_dataset} selects one specific dataset from the search result retrieved by
+search_datasets().
+}
+\examples{
+datasets <- search_datasets("Climate", aoi = T)
+selected <- select_dataset(datasets, 12)
+
+}
+\author{
+Sandro Groth
 }
 \keyword{select_dataset}

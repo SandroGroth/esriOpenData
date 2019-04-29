@@ -1,6 +1,17 @@
-#' Returns the field names of a selected dataset.
+#' Get dataset fields
 #'
-#' @param sel_dataset
+#' \code{fields} returns the field names of a selected dataset.
+#'
+#' @param sel_dataset Dataframe, containing a selected dataset from select_dataset().
+#'
+#' @return Vector, containing all field names.
+#'
+#' @examples
+#' datasets <- search_datasets("Zensus 2011", aoi = T)
+#' selected <- select_dataset(datasets, 1)
+#' fields(selected)
+#'
+#' @author Sandro Groth
 #'
 #' @keywords fields
 #' @export

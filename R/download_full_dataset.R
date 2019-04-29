@@ -1,5 +1,23 @@
-#' importFrom downloader dwonload
+#' Download full dataset
 #'
+#' \code{download_full_dataset} downloads a selected dataset from the server and saves it in the specified
+#' output directory. Supported formats are: .shp, .kml and .csv
+#'
+#' @param sel_dataset Dataframe containing the information about a selected dataset.
+#' @param format Character. Specifies the output format. Default is "shp".
+#'
+#' @return Logical, indicating success of the download operation.
+#'
+#' @examples
+#' datasets <- search_datasets("Climate", aoi = T)
+#' selected <- select_dataset(datasets, 12)
+#' download_full_dataset(selected, format = "csv")
+#'
+#' @author Sandro Groth
+#'
+#' @importFrom downloader download
+#'
+#' @keywords download
 #' @export
 
 download_full_dataset <- function(sel_dataset, format="shp") {

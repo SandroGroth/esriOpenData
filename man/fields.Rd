@@ -2,14 +2,26 @@
 % Please edit documentation in R/fields.R
 \name{fields}
 \alias{fields}
-\title{Returns the field names of a selected dataset.}
+\title{Get dataset fields}
 \usage{
 fields(sel_dataset)
 }
 \arguments{
-\item{sel_dataset}{}
+\item{sel_dataset}{Dataframe, containing a selected dataset from select_dataset().}
+}
+\value{
+Vector, containing all field names.
 }
 \description{
-Returns the field names of a selected dataset.
+\code{fields} returns the field names of a selected dataset.
+}
+\examples{
+datasets <- search_datasets("Zensus 2011", aoi = T)
+selected <- select_dataset(datasets, 1)
+fields(selected)
+
+}
+\author{
+Sandro Groth
 }
 \keyword{fields}
