@@ -17,5 +17,9 @@ Imports:
   mapedit,
   leaflet,
   dplyr,
-  sf
+  sf,
+  downloader,
+  magrittr,
+  rgdal,
+  sp
 RoxygenNote: 6.1.1
