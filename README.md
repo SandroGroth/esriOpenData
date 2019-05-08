@@ -1,3 +1,9 @@
+# esriOpenData
+
+[![CRAN version](https://www.r-pkg.org/badges/version/getSpatialData)](https://CRAN.R-project.org/package=getSpatialData)
+[![Build Status](https://travis-ci.org/16EAGLE/getSpatialData.svg?branch=master)](https://travis-ci.org/16EAGLE/getSpatialData)
+[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
 ## Introduction
 
 esriOpenData is an R package, that provides easy to use functions to access, query and donwload datasets from Esri's Open Data platform. Esri Open Data Hub stores a over 17,000 free and open datasets in different categories, ranging from climate to demography data. Many of these that can be helpful as ancilliary data in a remote sensing analysis. To explore the web interface of Esri Open Data Hub, see <http://hub.arcgis.com/pages/open-data>.
