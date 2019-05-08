@@ -1,8 +1,8 @@
 # esriOpenData
 
-[![CRAN version](https://www.r-pkg.org/badges/version/getSpatialData)](https://CRAN.R-project.org/package=getSpatialData)
-[![Build Status](https://travis-ci.org/16EAGLE/getSpatialData.svg?branch=master)](https://travis-ci.org/16EAGLE/getSpatialData)
-[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![CRAN version](https://www.r-pkg.org/badges/version/esriOpenData)](https://CRAN.R-project.org/package=esriOpenData)
+[![Build Status](https://travis-ci.org/SandroGroth/esriOpenData.svg?branch=master)](https://travis-ci.org//SandroGroth/esriOpenData)
+[![Lifecycle:experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 ## Introduction
 
