@@ -33,6 +33,8 @@ set_dir <- function(dir) {
 
 }
 
+
+
 #' AOI Setting
 #'
 #' \code{set_aoi} sets an aoi for the current session by passing a spatial Object.
@@ -53,21 +55,27 @@ set_dir <- function(dir) {
 #' ## set session wide aoi
 #' set_aoi(shp)
 #'
+#' @importFrom sf as_Spatial
+#' @importFrom mapedit drawFeatures
+#' 
 #' @keywords settings
 #' @export
 
-set_aoi <- function(sp_obj=FALSE) {
-  if(!isFALSE(sp_obj)) {
-    if(!class(sp_obj) %in% getOption("esriOpenData.sp_obj_classes")) {msg("sp_obj is not a spatial object.", "ERROR")}
-    options(esriOpenData.aoi = sp_obj)
-    options(esriOpenData.aoi_set = TRUE)
+set_aoi <- function(aoi=FALSE) {
+  if(!isFALSE(aoi)) {
+    if(!class(aoi) %in% getOption("esriOpenData.sp_obj_classes")) {msg("aoi is not a spatial object.", "ERROR")}
   } else {
-    msg("No spatial object specified. Drawing enabled.")
-    #drawn <- mapedit::editMap(leaflet::leaflet() %>% leaflet::addTiles(), sf = FALSE)
+    msg("No spatial object specified. Drawing enabled.", "INFO")
+    aoi <- mapedit::drawFeatures(crs=4326)$geometry
+    aoi <- sf::as_Spatial(aoi)
     # TODO: Allow only rectangles
     # TODO: Implement Conversion from drawn to bbox
   }
+  options(esriOpenData.aoi = aoi)
+  options(esriOpenData.aoi_set = TRUE)
 }
+
+
 
 #' Checks if an AOI is set for this session.
 #'
@@ -87,6 +95,8 @@ set_aoi <- function(sp_obj=FALSE) {
     return(FALSE)
   }
 }
+
+
 
 #' On package startup
 #'

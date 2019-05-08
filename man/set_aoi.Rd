@@ -4,7 +4,7 @@
 \alias{set_aoi}
 \title{AOI Setting}
 \usage{
-set_aoi(sp_obj = FALSE)
+set_aoi(aoi = FALSE)
 }
 \arguments{
 \item{sp_obj}{A spatial object of class Spatial or Subclasses.}
