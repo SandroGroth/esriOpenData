@@ -64,3 +64,32 @@
   return(paste0(box[1,1], ",", box[2,1], ",", box[1,2], ",", box[2,2]))
 
 }
+
+#' Get OS
+#' 
+#' @return character indicating the operating system
+#' 
+#' @author Sandro Groth
+#' 
+#' @keywords internal
+#' @noRd
+
+.get_OS <- function() {
+  sys_info <- Sys.info()
+  if (!is.null(sys_info)) {
+    os <- sys_info['sysname']
+    if (os == 'Darwin') {
+      os <- 'osx'
+    }
+  } else {
+    os <- .Platform$OS.type
+    if (grepl("^darwin", R.version$os)) {
+      os <- 'osx'
+    }
+    if (grepl('^linux-gnu', R.version$os)) {
+      os <- 'linux'
+    }
+  }
+  
+  return(tolower(os))
+}

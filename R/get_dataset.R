@@ -69,12 +69,15 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
 
   response <- .call_get(rest_url)
   # TODO: check if reponse conains error
+  
+  message(response)
 
-  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = FALSE, layer = "ESRIJSON")},
+  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = FALSE, layer = "GeoJSON")},
             warning = function(w) {msg(w, "WARNING")},
             error = function(e) {msg(e, "ERROR")})
 
   if(isTRUE(export)) {
+    # TODO: Error handling in export
     out_dir <- ""
     if(isFALSE(getOption("esriOpendata.out_dir_set"))) {
       msg("No output directory set. Working directory will be selected.")
@@ -84,11 +87,20 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
     }
     dsn <- gsub(":", "", slug)
     dsn <- gsub("-", "_", dsn)
+    os <- .get_OS()
     if(format == "shp") {
-      rgdal::writeOGR(response_spdf, paste0(out_dir, "/", dsn, ".shp"), 1, driver = "ESRI Shapefile")   # TODO: Handle stupid windows backslashes
+      if (os != "windows") {
+        rgdal::writeOGR(response_spdf, paste0(out_dir, "/", dsn, ".shp"), 1, driver = "ESRI Shapefile")
+      } else {
+        rgdal::writeOGR(response_spdf, paste0(out_dir, "\\", dsn, ".shp"), 1, driver = "ESRI Shapefile")
+      }
     }
     if(format == "csv") {
-      write.csv(response_spdf, paste0(out_dir, "/", dsn, ".csv"))
+      if (os != "windows") {
+        write.csv(response_spdf, paste0(out_dir, "/", dsn, ".csv"))
+      } else {
+        write.csv(response_spdf, paste0(out_dir, "\\", dsn, ".csv"))
+      }
     }
   }
 
