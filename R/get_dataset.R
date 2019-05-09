@@ -72,7 +72,7 @@ get_dataset <- function(sel_dataset, fields=FALSE, sp_ref=4326, export=FALSE, fo
   
   message(response)
 
-  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = FALSE, layer = "GeoJSON")},
+  tryCatch({response_spdf <- rgdal::readOGR(response, verbose = FALSE, layer = "OGRGeoJSON")},
             warning = function(w) {msg(w, "WARNING")},
             error = function(e) {msg(e, "ERROR")})
 
