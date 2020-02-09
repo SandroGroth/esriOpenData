@@ -6,7 +6,7 @@
 
 ## Introduction
 
-esriOpenData is an R package, that provides easy to use functions to access, query and donwload datasets from Esri's Open Data platform. Esri Open Data Hub stores a over 17,000 free and open datasets in different categories, ranging from climate to demography data. Many of these that can be helpful as ancilliary data in a remote sensing analysis. To explore the web interface of Esri Open Data Hub, see <http://hub.arcgis.com/pages/open-data>.
+esriOpenData is an R package, that provides easy to use functions to access, query and download datasets from Esri's Open Data platform. Esri Open Data Hub stores a over 17,000 free and open datasets in different categories, ranging from climate to demography data. Many of these that can be helpful as ancilliary data in a remote sensing analysis. To explore the web interface of Esri Open Data Hub, see <http://hub.arcgis.com/pages/open-data>.
 
 esriOpenData can be installed using devtools:
 
